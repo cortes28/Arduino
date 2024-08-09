@@ -1,0 +1,18 @@
+int ledpin=11;                // initialize digital pin 11 (PWM output)
+int potpin=0;                 //initialize the anolog pin 0 
+int val=0;                    // Temporarily store variables' value from the sensor
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(ledpin, OUTPUT);    // defines digital pin 11 as 'output'
+  Serial.begin(9600);         // sets baud rate at 9600
+  // NOTE: for analog ports, they are automatically set up as 'input' as opposed to output as how I set it up in line 7
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  val=analogRead(potpin);      // reads the analog value from the blue sensor and assigns it to val
+  Serial.println(val);        // display value of val 'STDOUT'
+  analogWrite(ledpin,val/4);  // turn on LED and set up the brightness (max. output of PWM is 255)
+  delay(10);                  // give intervals of 0.01 seconds (1000 appears to be 1 second) (1 appears to be 0.001 seconds) 
+}
